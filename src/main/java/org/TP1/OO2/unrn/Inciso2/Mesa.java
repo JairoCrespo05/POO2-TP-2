@@ -45,7 +45,7 @@ public class Mesa {
         if(cantSillas <= 0){throw new RuntimeException(CANT_SILLAS_INVALIDA);}
     }
 
-     public void hacerPedido(Comensal comensal, Alimento comida, int cantComida, Alimento bebida, int cantBebida) throws SQLException {
+     public void hacerPedido(Comensal comensal, Alimento comida, int cantComida, Alimento bebida, int cantBebida) throws RuntimeException {
 
        float precioBebidas = menu.elegirDelMenuBebidas(bebida, cantBebida);
        float precioComidas = menu.elegirDelMenuComidas(comida, cantComida);
@@ -55,9 +55,7 @@ public class Mesa {
          try {
              ticket.registrarPedidos(LocalDate.parse("2025-04-02"), precioDescontado);
              mensajeria.enviarCorreo("crespijairo5@gmail.com", "Pedido", "Su pedido a sido registrado exitosamente");
-         } catch (SQLException e) {
-             throw new RuntimeException(e.getMessage());
-         } catch (MessagingException e) {
+         } catch (SQLException | MessagingException e) {
              throw new RuntimeException(e.getMessage());
          }
 

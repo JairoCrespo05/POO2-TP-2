@@ -51,8 +51,7 @@ public class Concurso {
     }
 
     public boolean esPrimerDia(LocalDate fecha){
-        if (fecha.equals(this.fechaInicio)) return true;
-        return false;
+        return fecha.equals(this.fechaInicio);
     }
 
 
@@ -66,17 +65,14 @@ public class Concurso {
             try {
                 registro.RegistrarEnArchivo( inscripcion.laFechaInscripcionEs(), participante.miIdEs(), this.id_Concurso);
                 mensajeria.enviarCorreo("crespijairo5@gmail.com", "Inscrpcion", "Usted ha sido Registrado al Concurso");
-            } catch (SQLException e) {
-                throw new RuntimeException(e.getMessage());
-            } catch (MessagingException e) {
+            } catch (SQLException | MessagingException e) {
                 throw new RuntimeException(e.getMessage());
             }
         }
     }
 
     public boolean EstaInscripto(Participante participante){
-        if(inscriptos.contains(participante)) return true;
-        return false;
+        return inscriptos.contains(participante);
     }
 
     public void checkNombreConcurso(String nombreConcurso){

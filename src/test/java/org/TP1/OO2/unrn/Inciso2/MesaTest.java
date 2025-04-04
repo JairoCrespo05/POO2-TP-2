@@ -38,11 +38,8 @@ class MesaTest {
         mesa.sentarseEnLaMesa(cliente);
 
 
-        try {
-            mesa.hacerPedido(cliente, comida, 1, bebida, 1);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        mesa.hacerPedido(cliente, comida, 1, bebida, 1);
+
 
 
         assertEquals(registroEsperado, registroMesa.elRegistroCompletoEs());
